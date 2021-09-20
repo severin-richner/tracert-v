@@ -7,3 +7,5 @@ _(Since this task needs root privileges, make sure to run the script with them. 
 It then queries [ip-api](https://ip-api.com) to reslove the found ip-addresses to geo-locations and further displays the route on a world map using [plotly](https://github.com/plotly/plotly.py).
 
 Before running make sure all modules are installed: `pip install icmplib plotly aiohttp asyncio`
+
+![Example Image](./example.png)
