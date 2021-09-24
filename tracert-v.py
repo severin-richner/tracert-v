@@ -99,6 +99,7 @@ def draw_points(loc_info, inp):
     )
 
     fig.update_geos(fitbounds="locations")
+    fig.write_html('tracert-v_map.html')
     fig.show()
 
 
@@ -128,4 +129,5 @@ if __name__ == "__main__":
         else:
             print(f"{l[0]}\t{l[-1]}\t{l[5]} ({l[1]}, {l[2]})")
 
+    print("If the map didn't open automatically, it also got saved as \"tracert-v_map.html\".")
     draw_points(loc, domain_ip)
