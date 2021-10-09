@@ -1,14 +1,15 @@
 """
 Visualized Traceroute script.
 author: severin-richner
-date:   20.09.21
+date:   09.10.21
 """
 
 from icmplib import traceroute
 from icmplib.exceptions import NameLookupError
-import aiohttp
-import asyncio
+from aiohttp import ClientSession
 import plotly.graph_objects as go
+from sys import argv
+import asyncio
 
 
 def private_ip(ip):
@@ -39,7 +40,7 @@ async def get_ip_location(session, ip, num):
 async def geolocations(hops):
     """ async function for api calls to "ip-api.com" """
 
-    async with aiohttp.ClientSession() as session:
+    async with ClientSession() as session:
 
         reqs = []
         c = 0
@@ -103,22 +104,17 @@ def draw_points(loc_info, inp):
     fig.show()
 
 
-if __name__ == "__main__":
-    """ main function """
-    while True:
-        """ get user input and execute the traceroute """
+def single_lookup(domain_ip):
+    """ Function for doing a specific traceroute look up and displaying it on the map. """
 
-        domain_ip = input("Domain name / IPv4 address to search:\n>")
-        try:
-            trace_hops = traceroute(domain_ip)
-        except NameLookupError:
-            trace_hops = []
+    try:
+        trace_hops = traceroute(domain_ip)
+    except NameLookupError:
+        trace_hops = []
 
-        if len(trace_hops) == 0:
-            print("Invalid domain name / ip address.")
-
-        else:
-            break
+    if len(trace_hops) == 0:
+        print("Invalid domain name / ip address.")
+        return
 
     loc = asyncio.run(geolocations(trace_hops))
 
@@ -131,3 +127,25 @@ if __name__ == "__main__":
 
     print("If the map didn't open automatically, it also got saved as \"tracert-v_map.html\".")
     draw_points(loc, domain_ip)
+    return
+
+
+def all_connections():
+    #TODO
+    return
+
+
+if __name__ == "__main__":
+    """ main function """
+
+    if len(argv) == 1 or len(argv) > 2:
+        print("Invalid argument. Possible arguments: {Domain/IPv4 address}, all")
+        exit()
+
+    user_in = str(argv[1]).lower()
+
+    if user_in == "all":
+        all_connections()
+
+    else:
+        single_lookup(user_in)
