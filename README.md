@@ -5,7 +5,13 @@ Before running make sure all needed modules are installed: `pip install icmplib 
 
 ![Example Image](./example.png)
 
-## Possible Issues:
+## How to use
+
+`python3 tracert-v {domain or IPv4 address}` for looking up one specific route
+
+`python3 tracert-v all` for getting a live view of all open connections (NOT IMPLEMENTED YET)
+
+## Possible Issues
 
 * The "traceroute" function from icmplib needs **root privileges**, make sure to run the script with them. (On Linux use `sudo -E python3 tracert-v` and on Windows run "cmd" as administrator.)
 
