@@ -86,7 +86,7 @@ def draw_points(loc_info, inp):
         line=dict(width=1, color="red")
     ))
 
-    # adjusting desgin of the map
+    # adjusting design of the map
     fig.update_layout(
         title_text=f'Traceroute for \"{inp}\"',
         showlegend=False,
@@ -95,8 +95,14 @@ def draw_points(loc_info, inp):
             showland=True, landcolor="Gray",
             showocean=True, oceancolor="Black",
             showlakes=True, lakecolor="Black",
-            showcountries=True, countrycolor="White",
-        )
+            showcountries=True, countrycolor="White"
+        ),
+        margin_b=0,
+        margin_l=0,
+        margin_r=0,
+        margin_t=50
+        # width=,
+        # height=
     )
 
     fig.update_geos(fitbounds="locations")
