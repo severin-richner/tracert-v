@@ -1,16 +1,14 @@
 # tracert-v
 
-Visualized traceroute using Python. This python script is intended to be run from the terminal. It uses [icmplib](https://github.com/ValentinBELYN/icmplib) for performing the traceroute. It then queries [ip-api](https://ip-api.com) to resolve the found ip-addresses to geo-locations and further displays the route on a world map using [plotly](https://github.com/plotly/plotly.py). To find all open connections it sniffs packets using [scapy](https://github.com/secdev/scapy).
+Visualized traceroute using Python. This python script is intended to be run from the terminal. It uses [icmplib](https://github.com/ValentinBELYN/icmplib) for performing the traceroute. It then queries [ip-api](https://ip-api.com) to resolve the found ip-addresses to geo-locations and further displays the route on a world map using [plotly](https://github.com/plotly/plotly.py).
 
-Before running make sure all needed modules are installed: `pip install icmplib plotly aiohttp asyncio scapy dash`
+Before running make sure all needed modules are installed: `pip install icmplib plotly aiohttp asyncio dash`
 
 ![Example Image](./example.png)
 
 ## How to use
 
 `python3 tracert-v.py {domain or IPv4 address}` for looking up one specific route
-
-`python3 tracert-v.py all {seconds to run [int]}` for sniffing all open connections over the given time
 
 ### Remark
 
